@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<link rel="stylesheet" href="/css/upload.css"/>
+		<title>SpotPass Archival Project - Submit Dump</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / Submit Dump</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+				<h5 class="yellow center">Special thanks go to RGD for providing hosting services.</h5>
+				<h3 class="green">Nintendo 2DS/3DS Dumps</h3>
+				<p>Once you have the <code>partitionA.bin</code> (or also <code>partitionB.bin</code>) files, upload them below.</p>
+				<div class="ctr-upload">
+					<div class="ctr-upload-sel">
+						<p class="ctr-upload-input-header">Which files are in your <code>spotpass_cache</code> folder?</p>
+						<select id="ctr-upload-filesel" autocomplete="off">
+							<option selected>Choose...</option>
+							<option>Only partitionA.bin</option>
+							<option>Both partitionA.bin and partitionB.bin</option>
+						</select>
+					</div>
+					<div id="ctr-upload-areas">
+<div class="upload-area" id="upload-area-part-a"><div class="upload-input"><p class="upload-hint">Select partitionA.bin:</p><input autocomplete="off" class="upload-file" type="file" id="upload-filesel-part-a"></div><button class="upload-btn" id="upload-submit-part-a">Upload</button></div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
+
+<script src="/js/upload.js"></script>
