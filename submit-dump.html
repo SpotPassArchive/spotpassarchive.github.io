@@ -18,17 +18,39 @@
 				<h5 class="yellow center">Special thanks go to <a href="https://raregamingdump.ca" class="blue bold underline" target="_blank">Rare Gaming Dump</a> for providing hosting services.</h5>
 				<h3 class="green">Nintendo 2DS/3DS Dumps</h3>
 				<p>Once you have the <code>partitionA.bin</code> (or also <code>partitionB.bin</code>) files, upload them below.</p>
-				<div class="ctr-upload">
+				<div class="upload">
+					<div class="upload-error hidden" id="ctr-upload-error">
+						<div class="upload-error-content">
+							<h3 class="bold upload-error-title"></h3>
+							<p class="upload-error-desc"></p>
+						</div>
+						<button id="ctr-upload-error-btn" type="button">OK</button>
+					</div>
 					<div class="ctr-upload-sel">
-						<p class="ctr-upload-input-header">Which files are in your <code>spotpass_cache</code> folder?</p>
+						<span class="ctr-upload-input-header">Which files are in your <code>spotpass_cache</code> folder?</span>
 						<select id="ctr-upload-filesel" autocomplete="off">
 							<option selected>Choose...</option>
 							<option>Only partitionA.bin</option>
 							<option>Both partitionA.bin and partitionB.bin</option>
 						</select>
 					</div>
-					<div id="ctr-upload-areas">
-<div class="upload-area" id="upload-area-part-a"><div class="upload-input"><p class="upload-hint">Select partitionA.bin:</p><input autocomplete="off" class="upload-file" type="file" id="upload-filesel-part-a"></div><button class="upload-btn" id="upload-submit-part-a">Upload</button></div>
+					<span id="ctr-filesel-warn" class="hidden ctr-upload-input-header orange">Make sure to select the correct file.</span>
+					<div class="upload-areas" id="ctr-upload-areas">
+					</div>
+				</div>
+				<h3 class="green">Wii U Dumps</h3>
+				<p>Once you have your <code>task.db</code> files, upload them below.</p>
+				<p class="orange">Note: You can select multiple files.</p>
+				<div class="upload">
+					<div class="upload-error hidden" id="wup-upload-error">
+						<div class="upload-error-content">
+							<h3 class="bold upload-error-title"></h3>
+							<p class="upload-error-desc"></p>
+						</div>
+						<button id="wup-upload-error-btn" type="button">OK</button>
+					</div>
+					<div class="upload-areas" id="wup-upload-areas">
+
 					</div>
 				</div>
 			</div>

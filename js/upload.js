@@ -1,19 +1,62 @@
-/*
-<div class="upload-area" id="upload-area-part-a">
-	<div class="upload-input">
-		<p class="upload-hint">Select partitionA.bin:</p>
-		<input autocomplete="off" class="upload-file" type="file" id="upload-filesel-part-a">
-	</div>
-	<button class="upload-btn" id="upload-submit-part-a">Upload</button>
-</div>
-*/
+function showError(errorElement, title, desc) {
+	const titleElem = errorElement.getElementsByClassName("upload-error-title")[0];
+	const descElem = errorElement.getElementsByClassName("upload-error-desc")[0];
 
-function handleUpload(fileTypeInternal, targetUrl) {
-	// TODO
-	console.log(`called upload for ${fileTypeInternal}`);
+	titleElem.innerText = title;
+	descElem.innerText = desc;
+	errorElement.classList.remove("hidden");
 }
 
-function createUploadArea(targetUrl, fileType, fileTypeInternal) {
+function resetError(errorElement) {
+	const titleElem = errorElement.getElementsByClassName("upload-error-title")[0];
+	const descElem = errorElement.getElementsByClassName("upload-error-desc")[0];
+	titleElem.innerText = descElem.innerText = "";
+	errorElement.classList.add("hidden");
+}
+
+function strcmp(bytes, str)
+{
+	for (let i = 0; i < str.length; ++i)
+		if (bytes[i] !== str.charCodeAt(i))
+			return false;
+	return true;
+}
+
+async function ctrValidate(file, filename) {
+	if (!file.name.startsWith(filename) || file.size !== 4153344)
+		return false;
+	
+	let ab = await file.arrayBuffer();
+	let magic = new Uint8Array(ab).slice(0, 4);
+	return strcmp(magic, "SAVE");
+}
+
+async function wupValidate(file) {
+	if (file.size < 0x104 || file.size > 10485760) return false;
+	let buf = new Uint8Array(await file.arrayBuffer());
+	let slotTable = buf.slice(0x4, 0x104);
+	let minSize = 0x104;
+	for (let i = 255; i >= 0; i--) {
+		if ((slotTable[i] & 0x80) == 0x80) {
+			minSize += (i + 1) * 0x1000;
+			break;
+		}
+	}
+	return file.size >= minSize;
+}
+
+async function validateMultiple(files, cb) {
+	for (let file of files) {
+		if (!(await cb(file)))
+			return false;
+	}
+	return true;
+}
+
+const ctrValidateA = (file) => ctrValidate(file, "partitionA");
+const ctrValidateB = (file) => ctrValidate(file, "partitionB");
+
+function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultiple, fileValidator, errorElement) {
 	const targetElement = document.createElement("div");
 	targetElement.classList.add("upload-area");
 	targetElement.id = `upload-area-${fileTypeInternal}`;
@@ -21,46 +64,135 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal) {
 	const uploadInput = document.createElement("div");
 	uploadInput.classList.add("upload-input");
 
-	const uploadHint = document.createElement("p");
-	uploadHint.classList.add("upload-hint");
-	uploadHint.innerText = `Select ${fileType}:`;
+	const uploadHint = document.createElement("label");
+	uploadHint.classList.add("upload-hint", "bold");
+	uploadHint.htmlFor = `upload-filesel-${fileTypeInternal}`;
+	uploadHint.innerText = `Click here to upload ${fileType}`;
 
 	const uploadFileSel = document.createElement("input");
 	uploadFileSel.type = "file";
 	uploadFileSel.id = `upload-filesel-${fileTypeInternal}`;
+	uploadFileSel.classList.add("hidden");
+	uploadFileSel.multiple = supportsMultiple;
 
-	const uploadSubmitBtn = document.createElement("button");
-	uploadSubmitBtn.id = `upload-submit-${fileTypeInternal}`;
-	uploadSubmitBtn.innerText = "Upload";
-	uploadSubmitBtn.classList.add("upload-btn");
+	const uploadStatus = document.createElement("span");
+	uploadStatus.classList.add("upload-status");
+	uploadStatus.id = `upload-status-${fileTypeInternal}`;
+	
+	uploadFileSel.addEventListener("input", (e) => {
+		resetError(errorElement);
+		uploadStatus.classList.remove("green", "yellow");
+		uploadStatus.innerText = '';
+		if (supportsMultiple) {
+			validateMultiple(e.target.files, fileValidator)
+				.then(isValid => {
+					if (!isValid) {
+						showError(errorElement, "Invalid dump file(s)", "One or more of the files you have chosen are invalid.");
+						return false;
+					}
 
-	uploadSubmitBtn.addEventListener('click', () => handleUpload(fileTypeInternal, targetUrl));
+					return true;
+				});
+			return;
+		}
 
-	uploadInput.append(uploadHint, uploadFileSel);
-	targetElement.append(uploadInput, uploadSubmitBtn);
+		const file = e.target.files[0];
 
-	console.log(targetElement);
+		fileValidator(file)
+			.then(async (isValid) => {
+				if (!isValid)
+					return showError(errorElement, "Invalid dump file", "The chosen file is invalid.");
+
+				uploadFileSel.disabled = true;
+				uploadHint.innerText = `Uploading ${fileType}...`;
+				uploadHint.classList.add("yellow");
+				try {
+					const resp = await fetch(targetUrl, { body: file, method: "POST" })
+					let body = null;
+					switch (resp.status) {
+						case 400: {
+							body = await resp.text();
+							showError(errorElement, "Failed uploading file", `Server response: ${body}`);
+							} break;
+						case 200: {
+							uploadStatus.classList.remove("yellow");
+							body = await resp.json();
+
+							if (body["upload_result"] === 0)
+								uploadStatus.innerText = `${fileType} uploaded successfully. Thank you!`;
+							else if (body["upload_result"] === 1)
+								uploadStatus.innerText = "File already exists on server.";
+
+							uploadStatus.classList.add("green");
+							} break;
+						default: {
+							showError(errorElement, "Failed uploading file", `Server status code: ${resp.status}`);
+							uploadFileSel.value = "";
+							} break;
+					}
+				} catch {
+					showError(errorElement, "Failed uploading file", "An error occurred when communicating with the server.");
+				}
+				
+				uploadFileSel.disabled = false;
+				uploadHint.innerText = `Click here to upload ${fileType}`;
+			})
+	});
+
+	uploadInput.append(uploadHint, uploadFileSel, uploadStatus);
+	targetElement.append(uploadInput);
+
 	return targetElement;
 }
 
+// const apiUrl = 'https://bossarchive.raregamingdump.ca';
+const apiUrl = 'http://127.0.0.1:5000';
+
+// ctr 
+
 const ctrUploadAreaRoot = document.getElementById("ctr-upload-areas");
 const ctrUploadSelector = document.getElementById("ctr-upload-filesel");
+const ctrUploadWarn = document.getElementById("ctr-filesel-warn");
+const ctrErrorBtn = document.getElementById("ctr-upload-error-btn");
+const ctrError = document.getElementById("ctr-upload-error");
+
+ctrErrorBtn.addEventListener("click", () => resetError(ctrError));
+
 ctrUploadSelector.selectedIndex = 0;
 let prevIndex = 0;
 
 ctrUploadSelector.addEventListener("change", () => {
+	ctrError.classList.add("hidden");
 	if (prevIndex != ctrUploadSelector.selectedIndex)
 		ctrUploadAreaRoot.innerHTML = "";
 
-	// TODO: update urls and remove "test"
 	switch (ctrUploadSelector.selectedIndex) {
-	case 1:
-			ctrUploadAreaRoot.append(createUploadArea("test", "partitionA.bin", "part-a"));
+		case 0:
+			ctrUploadWarn.classList.add("hidden");
 			break;
-	case 2:
-			[ ua, ub ] = [ createUploadArea("test", "partitionA.bin", "part-a"), createUploadArea("test", "partitionB.bin", "part-b") ]
-			ctrUploadAreaRoot.append(...[ua, ub]);
-			break;
+		case 1: {
+				ctrUploadWarn.classList.add("hidden");
+				ctrUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError));
+			} break;
+		case 2: {
+				ctrUploadWarn.classList.remove("hidden");
+				const ua = createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError);
+				const ub = createUploadArea(`${apiUrl}/upload/ctr/partition-b`, "partitionB.bin", "part-b", false, ctrValidateB, ctrError);
+				ctrUploadAreaRoot.append(ua, ub);
+			} break;
 	}
 	prevIndex = ctrUploadSelector.selectedIndex;
 });
+
+// wup
+
+const wupUploadAreaRoot = document.getElementById("wup-upload-areas");
+const wupErrorBtn = document.getElementById("wup-upload-error-btn");
+const wupError = document.getElementById("wup-upload-error");
+
+wupErrorBtn.addEventListener("click", () => resetError(wupError));
+
+wupUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/wup`, "task.db file(s)", "taskdb", true, wupValidate, wupError));
+
+// debug only!
+ctrUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError));

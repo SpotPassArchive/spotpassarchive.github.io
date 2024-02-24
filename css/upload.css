@@ -1,11 +1,3 @@
-.ctr-upload {
-	width: 80%;
-	align-self: center;
-	display: flex;
-	flex-direction: column;
-}
-
-.ctr-upload > * { width: 100%; }
 .ctr-upload-sel {
 	display: flex;
 	flex-direction: column;
@@ -14,8 +6,9 @@
 }
 
 .ctr-upload-input-header { margin-bottom: 10px; }
+
 #ctr-upload-filesel {
-	height: 45px;
+	height: 35px;
 	text-align: center;
 	border-radius: 10px;
 	border: none;
@@ -23,42 +16,88 @@
 	padding: 5px 15px;
 }
 
-#ctr-upload-filesel option {
-	font-size: initial;
+#ctr-upload-filesel option { font-size: initial; }
+
+.upload {
+	width: 80%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-#ctr-upload-areas {
-	width: 100%;
+.upload-error-content {
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	margin-right: 10px;
 }
+
+.upload-error {
+	padding: 5px 15px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	background-color: var(--red);
+	border: 1px solid white;
+	margin-bottom: 20px;
+}
+
+.upload-error > button {
+	flex: none;
+	font-size: 1rem;
+	width: 45px;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid white;
+	cursor: pointer;
+	color: white;
+	background-color: var(--dark-red);
+}
+
+.upload-areas { width: 100%; }
 
 .upload-area {
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.upload-area:has(+ .upload-area) {
+	margin-bottom: 20px;
 }
 
 .upload-input {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
 	justify-content: center;
-	margin-right: 5px;
+	min-width: 50%;
 	max-width: 100%;
 }
 
 .upload-hint {
 	margin-bottom: 10px;
+	color: var(--blue);
+	cursor: pointer;
+	padding: 5px;
+	border: 1px solid white;
+	background-color: var(--bg);
+	border-radius: 5px;
 }
 
-.upload-btn {
-	height: 40px;
-	border-radius: 10px;
+.upload-hint:has(+ input:disabled) {
+	cursor: not-allowed;
+}
+
+.upload-status {
+	font-size: 1rem;
+	align-self: center;
 }
 
 @media screen and (max-width: 1200px) {
-	.ctr-upload { width: 100%; }
-	#ctr-upload-filesel {
-		width: 100%;
-	}
+	.upload { width: 100%; }
+	#ctr-upload-filesel { min-width: 50%; }
 }

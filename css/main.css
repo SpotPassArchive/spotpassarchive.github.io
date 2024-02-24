@@ -85,9 +85,12 @@
 :root {
 	--font-size: 1.3em;
 	--green: #44fc16;
+	--dark-green: #1c8202;
 	--blue: #0afcaf;
 	--orange: #fc870a;
 	--yellow: #fce80a;
+	--red: #b20202;
+	--dark-red: #540000;
 
 	--bg: #121859;
 	--fg: #0e112b;
@@ -136,7 +139,9 @@ body {
 	font-size: var(--font-size);
 }
 
-main { margin-bottom: 20px; }
+main:has(+ footer) { margin-bottom: 20px; }
+
+.hidden { display: none !important; }
 
 .center { align-self: center; }
 .bold { font-weight: bold; }
@@ -147,6 +152,7 @@ main { margin-bottom: 20px; }
 .orange { color: var(--orange); }
 .blue { color: var(--blue); }
 .green { color: var(--green); }
+.white { color: white; }
 
 .main-header { margin-bottom: 40px; }
 
