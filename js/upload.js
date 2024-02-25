@@ -85,13 +85,56 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 		uploadStatus.innerText = '';
 		if (supportsMultiple) {
 			validateMultiple(e.target.files, fileValidator)
-				.then(isValid => {
-					if (!isValid) {
-						showError(errorElement, "Invalid dump file(s)", "One or more of the files you have chosen are invalid.");
-						return false;
+				.then(async (isValid) => {
+					if (!isValid)
+						return showError(errorElement, "Invalid dump file(s)", "One or more of the files you have chosen are invalid.");
+					try {
+						let uploaded = 0, failed = 0, exist = 0;
+						let toUpload = e.target.files.length;
+
+						uploadHint.innerText = `Uploading files (${uploaded}/${toUpload}) ...`;
+
+						for (let file of e.target.files) {
+							const resp = await fetch(targetUrl, { body: file, method: "POST" });
+							switch (resp.status) {
+								case 200:
+									const ret = await resp.json();
+									switch (ret["upload_result"]) {
+										case 1:
+											exist++;
+										case 0:
+											uploaded++;
+											uploadHint.innerText = `Uploading files (${uploaded}/${toUpload}) ...`;
+											break;
+									}
+									break;
+								case 400:
+									failed++;
+									break;
+							};
+						}
+
+						if (failed !== 0) {
+							showError(errorElement, "Failed uploading files(s)", `${failed} file(s) failed uploading.`);
+							if (uploaded !== 0) uploadStatus.classList.add("green");
+
+							if (exist === 0)
+								uploadStatus.innerText = `Succeeded: ${uploaded} file(s) (of which ${exist} already exist on the server), failed: ${failed} file(s).`;
+							else
+								uploadStatus.innerText = `Succeeded: ${uploaded} file(s), failed: ${failed} file(s).`;
+						} else {
+							uploadStatus.classList.add("green");
+							if (exist === 0)
+								uploadStatus.innerText = "Successfully uploaded all files, thank you!";
+							else
+								uploadStatus.innerText = `Successfully uploaded all files (${exist} of which already exist on the server). Thank you!`;
+						}
+					} catch (err) {
+						console.log(err);
+						showError(errorElement, "Failed uploading file(s)", "An error occurred when communicating with the server.");
 					}
 
-					return true;
+					uploadHint.innerText = `Click here to upload ${fileType}`;
 				});
 			return;
 		}
@@ -105,7 +148,6 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 
 				uploadFileSel.disabled = true;
 				uploadHint.innerText = `Uploading ${fileType}...`;
-				uploadHint.classList.add("yellow");
 				try {
 					const resp = await fetch(targetUrl, { body: file, method: "POST" })
 					let body = null;
@@ -115,13 +157,16 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 							showError(errorElement, "Failed uploading file", `Server response: ${body}`);
 							} break;
 						case 200: {
-							uploadStatus.classList.remove("yellow");
 							body = await resp.json();
 
-							if (body["upload_result"] === 0)
-								uploadStatus.innerText = `${fileType} uploaded successfully. Thank you!`;
-							else if (body["upload_result"] === 1)
-								uploadStatus.innerText = "File already exists on server.";
+							switch (body["upload_result"]) {
+								case 0:
+									uploadStatus.innerText = `${fileType} uploaded successfully. Thank you!`;
+									break;
+								case 1:
+									uploadStatus.innerText = "File already exists on server.";
+									break;
+							}
 
 							uploadStatus.classList.add("green");
 							} break;
@@ -145,8 +190,7 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 	return targetElement;
 }
 
-// const apiUrl = 'https://bossarchive.raregamingdump.ca';
-const apiUrl = 'http://127.0.0.1:5000';
+const apiUrl = 'https://bossarchive.raregamingdump.ca/api';
 
 // ctr 
 
