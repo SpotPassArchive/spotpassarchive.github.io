@@ -88,6 +88,8 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 				.then(async (isValid) => {
 					if (!isValid)
 						return showError(errorElement, "Invalid dump file(s)", "One or more of the files you have chosen are invalid.");
+					uploadFileSel.disabled = true;
+
 					try {
 						let uploaded = 0, failed = 0, exist = 0;
 						let toUpload = e.target.files.length;
@@ -135,6 +137,7 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 					}
 
 					uploadHint.innerText = `Click here to upload ${fileType}`;
+					uploadFileSel.disabled = false;
 				});
 			return;
 		}
@@ -237,6 +240,3 @@ const wupError = document.getElementById("wup-upload-error");
 wupErrorBtn.addEventListener("click", () => resetError(wupError));
 
 wupUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/wup`, "task.db file(s)", "taskdb", true, wupValidate, wupError));
-
-// debug only!
-ctrUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError));
