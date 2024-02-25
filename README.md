@@ -1,3 +1,3 @@
-# spotpassarchive.github.io
+# SpotPass Archive
 
 API + Frontend created by ZeroSkill
