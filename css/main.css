@@ -153,6 +153,7 @@ main:has(+ footer) { margin-bottom: 20px; }
 .orange { color: var(--orange); }
 .blue { color: var(--blue); }
 .green { color: var(--green); }
+.purple { color: var(--purple); }
 .white { color: white; }
 
 .main-header { margin-bottom: 40px; }
