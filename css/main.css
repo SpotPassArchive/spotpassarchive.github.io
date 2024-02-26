@@ -155,6 +155,7 @@ main:has(+ footer) { margin-bottom: 20px; }
 .green { color: var(--green); }
 .purple { color: var(--purple); }
 .white { color: white; }
+.red { color: var(--red); }
 
 .main-header { margin-bottom: 40px; }
 
