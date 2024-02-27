@@ -183,6 +183,12 @@ main:has(+ footer) { margin-bottom: 20px; }
 .main-block > * { margin-bottom: 15px; }
 .main-block > *:last-child { margin-bottom: 0 !important; }
 
+.stats-list {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
 .spacer {
 	width: 95%;
 	align-self: center;
@@ -198,4 +204,9 @@ main:has(+ footer) { margin-bottom: 20px; }
 
 @media screen and (max-width: 1200px) {
 	.main-container { width: 100%; }
+	.stats-list {
+		flex-direction: column;
+		justify-content: initial;
+		align-items: center;
+	}
 }
