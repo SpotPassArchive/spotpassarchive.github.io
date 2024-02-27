@@ -99,7 +99,7 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 						for (let file of e.target.files) {
 							const resp = await fetch(targetUrl, { body: file, method: "POST" });
 							switch (resp.status) {
-								case 200:
+								case 200: {
 									const ret = await resp.json();
 									switch (ret["upload_result"]) {
 										case 1:
@@ -108,12 +108,13 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 											uploaded++;
 											uploadHint.innerText = `Uploading files (${uploaded}/${toUpload}) ...`;
 											break;
-									}
-									break;
+										}
+									} break;
 								case 400:
+								case 503:
 									failed++;
 									break;
-							};
+							}
 						}
 
 						if (failed !== 0) {
@@ -155,6 +156,7 @@ function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultipl
 					const resp = await fetch(targetUrl, { body: file, method: "POST" })
 					let body = null;
 					switch (resp.status) {
+						case 503:
 						case 400: {
 							body = await resp.text();
 							showError(errorElement, "Failed uploading file", `Server response: ${body}`);
