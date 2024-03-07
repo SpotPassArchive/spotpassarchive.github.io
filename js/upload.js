@@ -32,17 +32,10 @@ async function ctrValidate(file, filename) {
 }
 
 async function wupValidate(file) {
-	if (file.size < 0x104 || file.size > 10485760) return false;
-	let buf = new Uint8Array(await file.arrayBuffer());
-	let slotTable = buf.slice(0x4, 0x104);
-	let minSize = 0x104;
-	for (let i = 255; i >= 0; i--) {
-		if ((slotTable[i] & 0x80) == 0x80) {
-			minSize += (i + 1) * 0x1000;
-			break;
-		}
-	}
-	return file.size >= minSize;
+	if (file.size !== 1048836) return false;
+	let buf = await file.arrayBuffer();
+	let magic = new Uint8Array(buf).slice(0, 4);
+	return (magic[0]|magic[1]|magic[2]|magic[3]) === 0;
 }
 
 async function validateMultiple(files, cb) {
