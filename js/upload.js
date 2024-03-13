@@ -47,7 +47,6 @@ async function validateMultiple(files, cb) {
 }
 
 const ctrValidateA = (file) => ctrValidate(file, "partitionA");
-const ctrValidateB = (file) => ctrValidate(file, "partitionB");
 
 function createUploadArea(targetUrl, fileType, fileTypeInternal, supportsMultiple, fileValidator, errorElement) {
 	const targetElement = document.createElement("div");
@@ -193,38 +192,12 @@ const apiUrl = 'https://bossarchive.raregamingdump.ca/api';
 // ctr 
 
 const ctrUploadAreaRoot = document.getElementById("ctr-upload-areas");
-const ctrUploadSelector = document.getElementById("ctr-upload-filesel");
-const ctrUploadWarn = document.getElementById("ctr-filesel-warn");
 const ctrErrorBtn = document.getElementById("ctr-upload-error-btn");
 const ctrError = document.getElementById("ctr-upload-error");
 
 ctrErrorBtn.addEventListener("click", () => resetError(ctrError));
 
-ctrUploadSelector.selectedIndex = 0;
-let prevIndex = 0;
-
-ctrUploadSelector.addEventListener("change", () => {
-	ctrError.classList.add("hidden");
-	if (prevIndex != ctrUploadSelector.selectedIndex)
-		ctrUploadAreaRoot.innerHTML = "";
-
-	switch (ctrUploadSelector.selectedIndex) {
-		case 0:
-			ctrUploadWarn.classList.add("hidden");
-			break;
-		case 1: {
-				ctrUploadWarn.classList.add("hidden");
-				ctrUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError));
-			} break;
-		case 2: {
-				ctrUploadWarn.classList.remove("hidden");
-				const ua = createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin", "part-a", false, ctrValidateA, ctrError);
-				const ub = createUploadArea(`${apiUrl}/upload/ctr/partition-b`, "partitionB.bin", "part-b", false, ctrValidateB, ctrError);
-				ctrUploadAreaRoot.append(ua, ub);
-			} break;
-	}
-	prevIndex = ctrUploadSelector.selectedIndex;
-});
+ctrUploadAreaRoot.append(createUploadArea(`${apiUrl}/upload/ctr/partition-a`, "partitionA.bin file(s)", "part-a", true, ctrValidateA, ctrError));
 
 // wup
 

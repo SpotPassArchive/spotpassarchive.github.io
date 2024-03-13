@@ -7,17 +7,6 @@
 
 .ctr-upload-input-header { margin-bottom: 10px; }
 
-#ctr-upload-filesel {
-	height: 35px;
-	text-align: center;
-	border-radius: 10px;
-	border: none;
-	font-size: 1rem;
-	padding: 5px 15px;
-}
-
-#ctr-upload-filesel option { font-size: initial; }
-
 .upload {
 	width: 80%;
 	align-self: center;
