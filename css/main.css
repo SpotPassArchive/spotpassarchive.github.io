@@ -169,8 +169,6 @@ main:has(+ footer) { margin-bottom: 20px; }
 
 .main-container > .main-block:last-child { margin-bottom: 0 !important; }
 
-.main-container > .main-block-spreadsheet:last-child { margin-bottom: 0 !important; }
-
 .main-block {
 	display: flex;
 	flex-direction: column;
@@ -184,20 +182,6 @@ main:has(+ footer) { margin-bottom: 20px; }
 
 .main-block > * { margin-bottom: 15px; }
 .main-block > *:last-child { margin-bottom: 0 !important; }
-
-.main-block-spreadsheet {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 125%;
-	margin-bottom: 20px;
-	padding: 15px;
-	border-radius: 15px;
-	background-color: var(--fg);
-}
-
-.main-block-spreadsheet > * { margin-bottom: 15px; }
-.main-block-spreadsheet > *:last-child { margin-bottom: 0 !important; }
 
 .stats-list {
 	width: 100%;
