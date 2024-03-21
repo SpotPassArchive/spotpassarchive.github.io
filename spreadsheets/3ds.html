@@ -18,18 +18,18 @@
 
 		<main class="main-container">
 			<div class="main-block">
-				<script>
-  				CsvToHtmlTable.init({
-    				csv_path: 'data/3ds.csv', 
-    				element: 'table-container', 
-    				allow_download: true,
-    				csv_options: {separator: ',', delimiter: '"'},
-    				datatables_options: {"paging": false}
-  				});
-				</script>
+				<div id="table-container"></div></div>
 			</div>
 		</main>
-
+<script>
+	CsvToHtmlTable.init({
+	csv_path: 'data/3ds.csv', 
+	element: 'table-container', 
+	allow_download: true,
+	csv_options: {separator: ',', delimiter: '"'},
+	datatables_options: {"paging": false}
+	});
+</script>
 	</body>
 
 	<script src="/js/main.js"></script>
