@@ -4,7 +4,7 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="stylesheet" href="/css/main.css"/>
-		<title>SpotPass Archival Project - Wii U Guide (CFW)</title>
+		<title>SpotPass Archival Project - Wii U Guide</title>
 	</head>
 
 	<body>
@@ -16,30 +16,19 @@
 			<div class="main-block">
 				<h3 class="bold">Prerequisites:</h3>
 				<ul>
-					<li></li>Any Wii U running Aroma CFW</li>
-					<li>A network connection</li>
-					<li>A PC with an FTP client installed</li>
+					<li>Any Wii U system</li>
+					<li>An SD card formatted to FAT32</li>
 				</ul>
 				<div class="spacer"></div>
 				<ol>
+					<li>Open the Internet Browser and navigate to https://dumplingapp.com</li>
+					<li>Click on the "Launch Dumpling" button.</li>
+					<li>Once Dumpling is open, use the D-Pad to select the option that says "SpotPass data" [TODO] and press A.</li>
+					<li>Select your SD card with the D-Pad, then select "OK" and press A.</li>
 					<li>
-						Download the latest release of the <span class="bold">FTPiiU plugin for Aroma</span>, available
-						as a release <a class="blue underline" href="https://github.com/wiiu-env/ftpiiu_plugin/releases/latest">on GitHub</a>.
-						<ul>
-							<li>When downloading from GitHub, extract the file inside of the .zip file into the <code>/wiiu/environments/aroma/plugins/</code> folder of your SD card.
-						</ul>
+						When done, the files will be automatically uploaded to the server. If the files were unable to be uploaded automatically, they will be put on your SD card.
 					</li>
-					<li>Load into Aroma.</li>
-					<li>Hold L + D-PAD DOWN + SELECT to open the plugins menu, and select FTPiiU. This should give you your Wii U's IP address.</li>
-					<li>While you're there, go into the FTPiiU settings and enable "Allow access to system files".</li>
-					<li>Connect to your Wii U's IP address using an FTP client on the same network as your system.</li>
-					<li>Navigate to <code>/storage_mlc/usr/save/system/boss/</code>.</li>
-					<li>Copy all of the folders in this directory to your PC.</li>
-					<li>
-						When done, the files named <code>task.db</code>
-						will be located in the folders you copied to your PC.
-					</li>
-					<li>Submit your dump using the green link below.</li>
+					<li>If the upload failed, submit your dump using the green link below.</li>
 				</ol>
 				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
 			</div>
