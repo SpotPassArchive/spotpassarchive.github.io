@@ -4,62 +4,61 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="stylesheet" href="/css/main.css"/>
-		<title>SpotPass Archival Project - 3DS Guide (Super-SkaterHax)</title>
+		<title>SpotPass Archival Project - 3DS ガイド (Super-SkaterHax)</title>
 	</head>
 
 	<body>
 		<header class="main-header">
-			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Guide (Super-SkaterHax)</h3>
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS ガイド (Super-SkaterHax)</h3>
 		</header>
 
 		<main class="main-container">
 			<div class="main-block">
-				<h3 class="bold">Prerequisites:</h3>
+				<h3 class="bold">前提:</h3>
 				<ul>
-					<li>Any unmodded <b>NEW</b> 2DS/3DS with a system firmware version from 11.15.0 to 11.17.0
+					<li>システムファームウェアのバージョンが11.15.0～11.17.0のCFWがない<b>NEW</b> 2DS/3DS本体。
 						<ul>
-						<li>To check your firmware version, go to the System Settings and look at the number on the lower-right side of the top screen.</li>
-						<li class="blue">You must also make sure your system date and time are roughly accurate to real time, otherwise the exploit will not work.</li>
+						<li>ファームウェアのバージョンを確認するには、システム設定に行き、トップ画面の右下にある数字を見てください。</li>
+						<li class="blue">また、システムの日付と時刻が実時間とほぼ正確であることを確認する必要があります。</li>
 						</ul>
 					</li>
-					<li>A microSD card formatted to FAT32</li>
-					<li>A device that can read microSD cards</li>
+					<li>FAT32でフォーマットされたmicroSDカード</li>
+					<li>microSDカードを読めるデバイス</li>
 				</ul>
 				<div class="spacer"></div>
 				<ol>
-					<li>Visit the <a href="https://spotpassarchive.github.io/SpotPassDumper9/super-skaterhax" class="blue bold underline" target="_blank">SpotPassDumper9 for Super-SkaterHax minisite</a> to download the .zip file for your system by entering your system's region and firmware version.</li>
-					<li>Once you've downloaded the .zip file, extract its contents onto the root of your microSD card.</li>
-					<li>Insert the microSD card into your system, then power on your system.</li>
-					<li>On the HOME Menu, hold L + R to open the camera. Scan the QR code below that corresponds to your system's region.</li>
+					<li><a href="https://spotpassarchive.github.io/SpotPassDumper9/super-skaterhax" class="blue bold underline" target="_blank">SpotPassDumper9 for Super-SkaterHax minisite</a>に行ってシステムの地域とファームウェアのバージョンを入力して、システムに対応する.zipファイルをダウンロードしてください。</li>
+					<li>.zipファイルをダウンロードしたら、その内容をmicroSDカードのルートに展開します。</li>
+					<li>microSDカードをシステムに挿入し、システムの電源を入れます。</li>
+					<li>HOMEメニューで、L + Rを押したままカメラを開きます。お使いのシステムの地域に対応する以下のQRコードをスキャンします。</li>
           					<ul>
-          					  <li>If you are unable to scan QR codes, you may open the web browser and type the URL manually instead (<code>https://zoogie.github.io/web/super</code> for EUR/USA/JPN, <code>https://zoogie.github.io/web/korea</code> for KOR).
+          					  <li>QRコードをスキャンできない場合は、ウェブブラウザを開き、URLを手入力することもできます。(<code>https://zoogie.github.io/web/super</code>はEUR/USA/JPN, <code>https://zoogie.github.io/web/korea</code>はKOR).
     					      	</ul>
 					</li>
 <img align="middle" src="assets/skater_qrcodes.png">
-					<li>Press SELECT or tap the star button on the bottom screen, then tap "Bookmark this Page".</li>
-					<li>Press B to return to the browser.</li>
-					<li>Press START or tap the three-line button on the bottom screen to open the menu, and then tap Settings.</li>
-         				<li>Tap "Delete Cookies" and press A to continue.</li>
-          				<li>Exit to the HOME Menu and immediately re-open the browser.</li>
-       					<li>Tap the "GO GO!" button on the bottom screen.
+					<li>SELECTを押すか、下画面の星ボタンをタップし、「このページをブックマーク」をタップします。</li>
+					<li>Bボタンを押してブラウザに戻ります。</li>
+					<li>STARTを押すか、下画面の三本線のボタンをタップしてメニューを開き、「設定」をタップします。</li>
+         				<li>「Cookieを削除」をタップし、Aボタンを押して続けます。</li>
+          				<li>HOMEメニューに戻り、すぐにブラウザを再度開きます。</li>
+       					<li>下画面の「GO GO！」ボタンをタップします。
           					<ul>
-            						<li>If any prompts appear, approve all of them.</li>
-							<li>If your console freezes with "An error has occurred" on the bottom screen, start the process over again from step 5, but this time don't delete the cookies. If that doesn't work, make sure your files are in the correct location.</li>
-            						<li>If your console freezes on a yellow screen, restart your system and try again.</li>
-            						<li>If your console freezes on a red or green screen, restart your system and start the process over again from step 5.</li>
-	    						<li>If your console shows “Text” on the bottom screen, you have an Old 3DS and this exploit will not work on your device. If this is the case, you should follow <a href="/guides/ctr/mset9">this other guide</a> instead.</li>
-							<li>If you've done everything correctly and it still didn't work, please try <a href="/guides/ctr/mset9">this other guide</a> instead.</li>
+            						<li>プロンプトが表示されたら、すべて承認する。</li>
+							<li>下画面に「エラーが発生しました」と表示されてフリーズした場合は、手順5からやり直してください。それでもうまくいかない場合は、ファイルが正しい場所にあることを確認してください。</li>
+            						<li>黄色い画面でフリーズした場合は、システムを再起動してやり直してください。</li>
+            						<li>コンソールが赤または緑の画面でフリーズした場合は、システムを再起動し、手順5からやり直してください。</li>
+	    						<li>コンソールの下画面に「Text」と表示されている場合、古い3DSを使用しているため、このエクスプロイトは使用できません。その場合は、代わりに　<a href="/guides/ctr/mset9">こちらのガイド</a> に従ってください。</li>
+							<li>すべて正しく行ったにもかかわらずうまくいかない場合は、代わりに<a href="/guides/ctr/mset9">こちらのガイド</a> 試してください。</li>
           					</ul>
 					</li>
-					<li>If all goes right, you should be booted into the Homebrew Launcher. From here, select "nimdsphax" and press A to launch it. This should boot you into SpotPassDumper9.</li>
-          				<li>Follow the directions shown on the bottom screen.</li>
+					<li>すべてがうまくいけば、Homebrew Launcherが起動するはずです。ここから "nimdsphax "を選択し、Aボタンを押して起動します。これでSpotPassDumper9が起動します。</li>
+          				<li>下画面の指示に従ってください。</li>
 					<li>
-						When done, the file <code>partitionA.bin</code>
-						will be located on your microSD card in the <code>/spotpass_cache/</code> folder.
+						完了すると、ファイルpartitionA.binがmicroSDカードの/spotpass_cache/フォルダに保存されます。
 					</li>
-					<li>Submit your dump using the green link below.</li>
+					<li>下の緑色のリンクからダンプを送信してください。</li>
 				</ol>
-				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
+				<a id="submit-link" href="/submit-dump" class="green bold underline">Submit Dumpに続ける</a>
 			</div>
 		</main>
 
