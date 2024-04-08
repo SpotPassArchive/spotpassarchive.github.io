@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<title>SpotPass Archival Project - 3DS Guide (NAND Dump)</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Guide (NAND Dump)</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+                <h3 class="light-red bold">WARNING: This guide is for advanced users only. It is intended to be a last resort for if you cannot physically use the system or just happen to have an old NAND backup lying around.</h3>
+				<h4 class="bold">Prerequisites:</h4>
+				<ul>
+					<li>Any 2DS/3DS NAND</li>
+                </ul>
+				<div class="spacer"></div>
+				<ol>
+					<li>Obtain a NAND dump of your system.</li>
+					<li>Download <a href="https://github.com/SpotPassArchive/autocopy">Autocopy</a> to your PC and run <code>pip install -r requirements.txt</code> to install dependencies.</li>
+					<li>Run it using <code>python3 autocopy.py</code> and follow the on-screen directions, entering the path to your NAND when prompted.
+						<ul>
+                        				<li>If you experience any issues with the guided interface or need more options, you may use it as a regular CLI program. Run <code>python3 autocopy.py --help</code> for more information.</li>
+                        			</ul>
+                    			</li>
+					<li>If all goes right, you should end up with <code>partitionA.bin</code> in the same folder the NAND is located in.</li>
+					<li>Autocopy will ask you if you wish to upload the file to the SpotPass Archival Project. Press "y" and then press enter to upload.</li>
+					<li>If the upload fails or you are otherwise unable to upload the file, submit your dump using the green link below.</li>
+				</ol>
+				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
