@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<title>SpotPass Archival Project - 3DS Guide (MSET9)</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Guide (MSET9)</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+				<h3 class="bold">Prerequisites:</h3>
+				<ul>
+					<li>Any unmodded 2DS/3DS with a system firmware version from 11.4.0 up to 11.17.0 (latest)
+					<ul>
+						<li>To check your firmware version, go to the System Settings and look at the number on the lower-right side of the top screen.</li>
+						</ul>
+					</li>
+					<li>
+						A <span class="underline bold">blank</span> SD card formatted to FAT32 to use for this process
+						<ul>
+							<li class="yellow bold italic">You <span class="underline">will</span> run into issues if you don't use a blank card.</li>
+						</ul>
+					</li>
+					<li>A computer with a way to read SD/microSD cards</li>
+					<li>Python 3 installed on the computer</li>
+				</ul>
+				<div class="spacer"></div>
+				<ol>
+					<li>Insert the SD/microSD card into your system.</li>
+					<li>Open Mii Maker and wait until you reach the main menu, then exit and power off your system.</li>
+					<li>Insert the SD/microSD card into your computer.</li>
+					<li>Download the latest release of <a class="blue bold underline" target="_blank" href="https://github.com/SpotPassArchive/SpotPassDumper9/releases/download/v1.2/SpotPassDumper9_v1.2_MSET9.zip">SpotPassDumper9 for MSET9</a> and extract its contents to the root of your SD/microSD card.</li>
+					<li>
+						Run the mset9 script:
+						<ul>
+							<li>On Windows, double-click on <code>mset9.bat</code>.</li>
+							<li>On macOS, double-click on <code>mset9.command</code>.</li>
+							<li>On Linux, run <code>python3 -m mset9.py</code>.</li>
+						</ul>
+					</li>
+					<li>Once you're in the script menu, use the numbers 1-4 (followed by a press of the Enter key) to choose the corresponding model and firmware version for your system.</li>
+					<li>Press <code>1</code> and then Enter to run the sanity check. It will tell you that your title database needs to be initialized.</li>
+					<li>Close the script and insert the SD/microSD card back into your system.</li>
+					<li>Launch System Settings.</li>
+					<li>
+						Go to Data Management → Nintendo 3DS → Software. If a message pops up about data corruption, press Reset.
+						<ul>
+							<li class="blue">Since this is a blank SD card, this will not delete any of your save data.</li>
+						</ul>
+					</li>
+					<li>Exit System Settings, then launch it again.</li>
+					<li>Go to Data Management → Nintendo 3DS → Extra Data.</li>
+					<li>Don't touch the screen or any buttons, but make sure you see the Mii Maker icon.</li>
+					<li><span class="yellow">With the system still turned on</span>, remove the SD/microSD card from your system and insert it into your computer.</li>
+					<li>Reopen the mset9 script and choose the correct firmware and model for your system again. Once you've done that, press <code>2</code> and then the Enter key to select <code>Inject MSET9 payload</code>.</li>
+					<li>Once injection has completed, close the mset9 script and insert the SD/microSD card back into your system.</li>
+					<li>Follow the directions shown on the bottom screen.</li>
+					<li>
+						When done, the file <code>partitionA.bin</code>
+						will be located on your SD/microSD card in the <code>/spotpass_cache/</code> folder.
+					</li>
+					<li>If you wish to remove the payload and use this SD/microSD card as normal, reopen the mset9 script and choose the <code>Remove MSET9</code> option.</li>
+					<li>Submit your dump using the green link below.</li>
+				</ol>
+				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
