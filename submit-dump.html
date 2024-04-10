@@ -1,6 +1,57 @@
 <!DOCTYPE html>
-<link rel="canonical" href="/" />
-<h1>If you have not been redirected, click <a href="/">here</a> to continue.</h1>
-<script>
-        window.location.href = '/';
-</script>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<link rel="stylesheet" href="/css/upload.css"/>
+		<title>SpotPass Archival Project - Submit Dump</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / Submit Dump</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+				<h5 class="yellow center">Special thanks go to <a href="https://raregamingdump.ca" class="blue bold underline" target="_blank">Rare Gaming Dump</a> for providing hosting services.</h5>
+				<h3 class="green">Nintendo 2DS/3DS Dumps</h3>
+				<p>Once you have the <code>partitionA.bin</code> file(s), upload them below.</p>
+				<p class="orange center">Note: You can select multiple files.</p>
+				<div class="upload">
+					<div class="upload-error hidden" id="ctr-upload-error">
+						<div class="upload-error-content">
+							<h3 class="bold upload-error-title"></h3>
+							<p class="upload-error-desc"></p>
+						</div>
+						<button id="ctr-upload-error-btn" type="button">OK</button>
+					</div>
+					<div class="upload-areas" id="ctr-upload-areas">
+					</div>
+				</div>
+				<h3 class="green">Wii U Dumps</h3>
+				<p>Once you have your <code>task.db</code> file(s), upload them below.</p>
+				<p class="orange center">Note: You can select multiple files.</p>
+				<div class="upload">
+					<div class="upload-error hidden" id="wup-upload-error">
+						<div class="upload-error-content">
+							<h3 class="bold upload-error-title"></h3>
+							<p class="upload-error-desc"></p>
+						</div>
+						<button id="wup-upload-error-btn" type="button">OK</button>
+					</div>
+					<div class="upload-areas" id="wup-upload-areas">
+
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
+
+<script src="/js/upload.js"></script>
