@@ -1,6 +1,70 @@
 <!DOCTYPE html>
-<link rel="canonical" href="/" />
-<h1>If you have not been redirected, click <a href="/">here</a> to continue.</h1>
-<script>
-        window.location.href = '/';
-</script>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<title>SpotPass Archival Project - 3DS Guide (Super-SkaterHax)</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Guide (Super-SkaterHax)</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+				<h3 class="bold">Prerequisites:</h3>
+				<ul>
+					<li>Any unmodded <b>NEW</b> 2DS/3DS with a system firmware version from 11.15.0 to 11.17.0
+						<ul>
+						<li>To check your firmware version, go to the System Settings and look at the number on the lower-right side of the top screen.</li>
+						<li class="blue">You must also make sure your system date and time are roughly accurate to real time, otherwise the exploit will not work.</li>
+						</ul>
+					</li>
+					<li>A microSD card formatted to FAT32</li>
+					<li>A device that can read microSD cards</li>
+				</ul>
+				<div class="spacer"></div>
+				<ol>
+					<li>Visit the <a href="https://spotpassarchive.github.io/SpotPassDumper9/super-skaterhax" class="blue bold underline" target="_blank">SpotPassDumper9 for Super-SkaterHax minisite</a> to download the .zip file for your system by entering your system's region and firmware version.</li>
+					<li>Once you've downloaded the .zip file, extract its contents onto the root of your microSD card.</li>
+					<li>Insert the microSD card into your system, then power on your system.</li>
+					<li>On the HOME Menu, hold L + R to open the camera. Scan the QR code below that corresponds to your system's region.</li>
+          					<ul>
+          					  <li>If you are unable to scan QR codes, you may open the web browser and type the URL manually instead (<code>https://zoogie.github.io/web/super</code> for EUR/USA/JPN, <code>https://zoogie.github.io/web/korea</code> for KOR).
+    					      	</ul>
+					</li>
+<img align="middle" src="assets/skater_qrcodes.png">
+					<li>Press SELECT or tap the star button on the bottom screen, then tap "Bookmark this Page".</li>
+					<li>Press B to return to the browser.</li>
+					<li>Press START or tap the three-line button on the bottom screen to open the menu, and then tap Settings.</li>
+         				<li>Tap "Delete Cookies" and press A to continue.</li>
+          				<li>Exit to the HOME Menu and immediately re-open the browser.</li>
+       					<li>Tap the "GO GO!" button on the bottom screen.
+          					<ul>
+            						<li>If any prompts appear, approve all of them.</li>
+							<li>If your console freezes with "An error has occurred" on the bottom screen, start the process over again from step 5, but this time don't delete the cookies. If that doesn't work, make sure your files are in the correct location.</li>
+            						<li>If your console freezes on a yellow screen, restart your system and try again.</li>
+            						<li>If your console freezes on a red or green screen, restart your system and start the process over again from step 5.</li>
+	    						<li>If your console shows “Text” on the bottom screen, you have an Old 3DS and this exploit will not work on your device. If this is the case, you should follow <a href="/guides/ctr/mset9">this other guide</a> instead.</li>
+							<li>If you've done everything correctly and it still didn't work, please try <a href="/guides/ctr/mset9">this other guide</a> instead.</li>
+          					</ul>
+					</li>
+					<li>If all goes right, you should be booted into the Homebrew Launcher. From here, select "nimdsphax" and press A to launch it. This should boot you into SpotPassDumper9.</li>
+          				<li>Follow the directions shown on the bottom screen.</li>
+					<li>
+						When done, the file <code>partitionA.bin</code>
+						will be located on your microSD card in the <code>/spotpass_cache/</code> folder.
+					</li>
+					<li>Submit your dump using the green link below.</li>
+				</ol>
+				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
