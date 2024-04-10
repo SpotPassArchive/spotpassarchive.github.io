@@ -1,6 +1,51 @@
 <!DOCTYPE html>
-<link rel="canonical" href="/" />
-<h1>If you have not been redirected, click <a href="/">here</a> to continue.</h1>
-<script>
-        window.location.href = '/';
-</script>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="/css/main.css"/>
+		<title>SpotPass Archival Project - 3DS Guide (SoundHax)</title>
+	</head>
+
+	<body>
+		<header class="main-header">
+			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Guide (SoundHax)</h3>
+		</header>
+
+		<main class="main-container">
+			<div class="main-block">
+				<h3 class="bold">Prerequisites:</h3>
+				<ul>
+					<li>Any unmodded 2DS/3DS with a system firmware version from 1.0.0 to 11.3.0
+						<ul>
+						<li>To check your firmware version, go to the System Settings and look at the number on the lower-right side of the top screen.</li>
+						</ul>
+					</li>
+					<li>An SD/microSD card formatted to FAT32</li>
+					<li>A device that has an SD/microSD card reader</li>
+				</ul>
+				<div class="spacer"></div>
+				<ol>
+					<li>
+						Visit the <a href="https://spotpassarchive.github.io/SpotPassDumper9/soundhax.html" class="blue bold underline" target="_blank">SpotPassDumper9 for SoundHax minisite</a> to download the .zip file for your system by entering your system's region, model, and firmware version.
+					</li>
+					<li>Once you've downloaded the .zip file, extract its contents onto the root of your SD/microSD card.</li>
+					<li>Insert the SD/microSD card back into your system, then power on your system.</li>
+					<li>Open the Nintendo 3DS Sound application</li>
+					<li>Look for a sound named "&lt;3 nedwill 2016" and play it. This may take up to 10 tries.</li>
+					<li>Follow the directions shown on the bottom screen.</li>
+					<li>
+						When done, the file <code>partitionA.bin</code>
+						will be located on your SD/microSD card in the <code>/spotpass_cache/</code> folder.
+					</li>
+					<li>Submit your dump using the green link below.</li>
+				</ol>
+				<a id="submit-link" href="/submit-dump" class="green bold underline">Continue to: Submit Dump</a>
+			</div>
+		</main>
+
+		<footer>
+			<p>Having trouble? Join the <a href="https://discord.gg/wxCEY8MHvh" class="blue bold underline" target="_blank">SpotPass Archive Discord server</a> for help.
+		</footer>
+	</body>
+</html>
