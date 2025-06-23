@@ -10,7 +10,6 @@
 		<meta content="https://spotpassarchive.github.io/spreadsheets/3ds.html" property="og:url" />
 		<meta content="https://spotpassarchive.github.io/favicon.ico" property="og:image" />
 		<meta content="#43B581" data-react-helmet="true" name="theme-color" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 </head>
 
 	<body>
@@ -18,28 +17,11 @@
 			<h3><a href="/" class="blue">SpotPass Archival Project</a> / 3DS Spreadsheet</h3>
 		</header>
 		<main class="main-container">
-			<div class="main-block">
-				<main class="row">
-            				<div class="col">
-						<div id="table-container"></div>
-					</div>
-        			</main>
+			<div class="main-block" id="info">
+			<p>
+				We recommend using <a class="blue" href="https://datomatic.no-intro.org/index.php?page=search&s=452">No-Intro's Dat-O-Matic</a> to see a list of which 3DS titles have SpotPass data archived. It will have the most up-to-date information. If you for some reason need the spreadsheet that used to be on this page, you can download it from <a class="blue" href="data/3ds.csv">here</a>, but please bear in mind that the information in it will be outdated.
+			</p>
 			</div>
 		</main>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.csv.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <script src="js/csv_to_html_table.js"></script>
-<script>
-	CsvToHtmlTable.init({
-	csv_path: 'data/3ds.csv', 
-	element: 'table-container', 
-	allow_download: true,
-	csv_options: {separator: ',', delimiter: '"'},
-	datatables_options: {"paging": false}
-	});
-</script>
 	</body>
 </html>
